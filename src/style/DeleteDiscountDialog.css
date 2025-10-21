@@ -1,0 +1,13 @@
+.dialog-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 40px; /* space for the close button */
+  position: relative;
+}
+
+.dialog-close {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+}

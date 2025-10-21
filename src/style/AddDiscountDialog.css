@@ -1,0 +1,79 @@
+.adddisc-title {
+  font-weight: 600;
+}
+
+.adddisc-content {
+  display: grid;
+  gap: 16px;
+  padding-top: 8px;
+}
+
+.adddisc-label {
+  color: rgba(0,0,0,0.6);
+  font-size: 0.95rem;
+}
+
+.adddisc-scope {
+  /* pill group look; rely on MUI defaults for now */
+}
+
+.adddisc-row {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.adddisc-type, .adddisc-value, .adddisc-field {
+  width: 100%;
+}
+
+.adddisc-actions {
+  padding: 16px 24px 24px 24px;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* Pills container */
+.adddisc-scope {
+  display: inline-flex;
+  gap: 12px;
+}
+
+/* Base pill look */
+.adddisc-scope .pill.MuiToggleButton-root {
+  border-radius: 12px;
+  padding: 10px 16px;
+  text-transform: none;
+  font-weight: 600;
+  border: 1px solid #d7dde3;
+  background: #f5f7fa;
+  color: #4a5568;
+}
+
+/* Selected pill */
+.adddisc-scope .pill.Mui-selected {
+  background: #11b9c9;       /* teal-ish like your mock */
+  color: #ffffff;
+  border-color: transparent;
+}
+
+/* Remove the default selected outline border */
+.adddisc-scope .pill.Mui-selected.MuiToggleButton-root {
+  border: 1px solid transparent;
+}
+
+/* Check icon inside the selected pill */
+.pill-check {
+  margin-left: 8px;
+  display: inline-flex;
+}
+
+/* Press feedback */
+.adddisc-scope .pill.MuiToggleButton-root:hover {
+  background: #eef3f6;
+}
+.adddisc-scope .pill.Mui-selected:hover {
+  background: #0fa5b4;
+}
+
