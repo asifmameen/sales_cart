@@ -17,7 +17,7 @@ import EditDiscountDialog from "./EditDiscountDialog";
 import type { EditDiscountPayload } from "./EditDiscountDialog";
 import DeleteDiscountDialog from "./DeleteDiscountDialog";
 import { useMemo, useState } from "react";
-import trimmer from "../assets/trimmer.jpg";
+import mcpro from "../assets/mcpro.jpg";
 
 const BASE_ONE_TIME = 10000000;
 const BASE_MONTHLY = 1000000;
@@ -204,10 +204,10 @@ const SalesCartContainer = () => {
               </div>
 
               <div className="product-header">
-                <img src={trimmer} alt="Trimmer" className="product-img" />
+                <img src={mcpro} alt="Trimmer" className="product-img" />
                 <div className="product-meta">
                   <Typography className="product-title">
-                    Webasto Pure II laadpaal type 2
+                    Macbook Pro M4
                   </Typography>
                   <Typography color="text.secondary">
                     ₹10,000.00 / month

@@ -129,8 +129,8 @@
 }
 
 .product-img {
-  width: 56px;
-  height: 56px;
+  width: 200px;
+  height: 100px;
   object-fit: contain;
 }
 
@@ -141,6 +141,7 @@
 
 .product-meta {
   display: flex;
+  padding-left: 130px;
   flex-direction: column;
   gap: 2px;
   color: #475569;
@@ -151,4 +152,3 @@
 .MuiDivider-root {
   margin: 10px 0;
 }
-   
