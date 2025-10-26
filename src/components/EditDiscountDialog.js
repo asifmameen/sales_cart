@@ -1,8 +1,7 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-// src/components/EditDiscountDialog.tsx
 import { useEffect, useState } from "react";
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, MenuItem, ToggleButton, ToggleButtonGroup, FormControl, InputLabel, Select, Typography, } from "@mui/material";
-import "../style/AddDiscountDialog.css"; // reuse same CSS
+import "../style/AddDiscountDialog.css";
 import { CheckCircleOutline } from "@mui/icons-material";
 export default function EditDiscountDialog({ open, initial, onClose, onSave, }) {
     const [scope, setScope] = useState("monthly");
@@ -11,7 +10,7 @@ export default function EditDiscountDialog({ open, initial, onClose, onSave, }) 
     const [valueInput, setValueInput] = useState("");
     const [duration, setDuration] = useState("");
     const [description, setDescription] = useState("");
-    // Prefill when opening
+    // Populate dialog when opened with existing discount
     useEffect(() => {
         if (open && initial) {
             setScope(initial.scope);
@@ -19,19 +18,16 @@ export default function EditDiscountDialog({ open, initial, onClose, onSave, }) 
             setName(initial.name);
             setValueInput(initial.kind === "percent"
                 ? String(initial.value)
-                : String(initial.value / 100) // cents -> €
-            );
+                : String(initial.value / 100));
             setDuration(initial.duration ? String(initial.duration) : "");
             setDescription(initial.description ?? "");
         }
     }, [open, initial]);
     const handleKindChange = (e) => {
         const v = e.target.value;
-        // convert displayed value to match the new unit
         const numeric = Number(valueInput) || 0;
-        const next = v === "percent" ? numeric : numeric; // display stays numeric; conversion handled on save
         setKind(v);
-        setValueInput(next ? String(next) : "");
+        setValueInput(numeric ? String(numeric) : "");
     };
     const handleSave = () => {
         const parsed = Number(valueInput);
@@ -43,7 +39,7 @@ export default function EditDiscountDialog({ open, initial, onClose, onSave, }) 
             kind,
             value: kind === "percent"
                 ? Math.min(100, Math.round(parsed))
-                : Math.round(parsed * 100), // euros -> cents
+                : Math.round(parsed * 100),
             description: description.trim() || undefined,
             duration: scope === "monthly" && duration
                 ? Math.max(1, Math.round(Number(duration)))

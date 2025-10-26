@@ -1,4 +1,3 @@
-// src/components/EditDiscountDialog.tsx
 import React, { useEffect, useState } from "react";
 import {
   Dialog,
@@ -16,15 +15,15 @@ import {
   Typography,
 } from "@mui/material";
 import type { SelectChangeEvent } from "@mui/material/Select";
-import "../style/AddDiscountDialog.css"; // reuse same CSS
+import "../style/AddDiscountDialog.css";
 import { CheckCircleOutline } from "@mui/icons-material";
 
 export type EditDiscountPayload = {
   name: string;
   scope: "one-time" | "monthly";
   kind: "percent" | "amount";
-  value: number; // percent 0–100 if kind=percent; amount in cents if kind=amount
-  duration?: number; // months (optional for monthly)
+  value: number;
+  duration?: number;
   description?: string;
 };
 
@@ -33,7 +32,7 @@ export type EditDiscountInitial = {
   name: string;
   scope: "one-time" | "monthly";
   kind: "percent" | "amount";
-  value: number; // same units as above (cents or %)
+  value: number;
   duration?: number;
   description?: string;
 };
@@ -58,7 +57,7 @@ export default function EditDiscountDialog({
   const [duration, setDuration] = useState<string>("");
   const [description, setDescription] = useState("");
 
-  // Prefill when opening
+  // Populate dialog when opened with existing discount
   useEffect(() => {
     if (open && initial) {
       setScope(initial.scope);
@@ -67,7 +66,7 @@ export default function EditDiscountDialog({
       setValueInput(
         initial.kind === "percent"
           ? String(initial.value)
-          : String(initial.value / 100) // cents -> €
+          : String(initial.value / 100)
       );
       setDuration(initial.duration ? String(initial.duration) : "");
       setDescription(initial.description ?? "");
@@ -76,11 +75,9 @@ export default function EditDiscountDialog({
 
   const handleKindChange = (e: SelectChangeEvent) => {
     const v = e.target.value as "percent" | "amount";
-    // convert displayed value to match the new unit
     const numeric = Number(valueInput) || 0;
-    const next = v === "percent" ? numeric : numeric; // display stays numeric; conversion handled on save
     setKind(v);
-    setValueInput(next ? String(next) : "");
+    setValueInput(numeric ? String(numeric) : "");
   };
 
   const handleSave = () => {
@@ -94,7 +91,7 @@ export default function EditDiscountDialog({
       value:
         kind === "percent"
           ? Math.min(100, Math.round(parsed))
-          : Math.round(parsed * 100), // euros -> cents
+          : Math.round(parsed * 100),
       description: description.trim() || undefined,
       duration:
         scope === "monthly" && duration
@@ -148,7 +145,6 @@ export default function EditDiscountDialog({
             </Select>
           </FormControl>
 
-          {/* value */}
           <TextField
             className="adddisc-value"
             label={kind === "percent" ? "Discount (%)" : "Discount (€)"}
