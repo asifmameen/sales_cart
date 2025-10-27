@@ -1,4 +1,3 @@
-// src/components/AddDiscountDialog.tsx
 import React, { useEffect, useState } from "react";
 import {
   Dialog,
@@ -16,7 +15,6 @@ import {
   Typography,
 } from "@mui/material";
 import CheckCircleOutline from "@mui/icons-material/CheckCircleOutline";
-// NOTE: type-only import so Vite doesn't try to load a runtime export
 import type { SelectChangeEvent } from "@mui/material/Select";
 import "../style/AddDiscountDialog.css";
 
@@ -24,8 +22,8 @@ export type AddDiscountPayload = {
   name: string;
   scope: "one-time" | "monthly";
   kind: "percent" | "amount";
-  value: number; // percent 0–100 if kind=percent; amount in cents if kind=amount
-  duration?: number; // months (optional, for monthly)
+  value: number;
+  duration?: number;
   description?: string;
 };
 
@@ -57,7 +55,7 @@ export default function AddDiscountDialog({ open, onClose, onAdd }: Props) {
   const handleKindChange = (e: SelectChangeEvent) => {
     const v = e.target.value as "percent" | "amount";
     setKind(v);
-    setValueInput(""); // reset to avoid unit confusion
+    setValueInput("");
   };
 
   const handleAdd = () => {
